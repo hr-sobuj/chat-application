@@ -1,8 +1,13 @@
+// external import
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 const { urlencoded } = require('express');
+
+// internal import
+const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
+const loginRouter = require('./route/loginRouter');
 
 const app = express();
 dotenv.config();
@@ -29,8 +34,15 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routing setup
+app.use('/', loginRouter);
+// app.use('/user', userRouter);
+// app.use('/inbox', inboxRouter);
 
-// error handling
+// 404 not found handling
+app.use(notFoundHandler);
+
+// common error handler
+app.use(errorHandler);
 
 // listing
 app.listen(process.env.PORT, () => {
