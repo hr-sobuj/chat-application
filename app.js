@@ -8,6 +8,8 @@ const { urlencoded } = require('express');
 // internal import
 const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
 const loginRouter = require('./route/loginRouter');
+const usersRouter = require('./route/usersRouter');
+const inboxRouter = require('./route/inboxRouter');
 
 const app = express();
 dotenv.config();
@@ -35,8 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routing setup
 app.use('/', loginRouter);
-// app.use('/user', userRouter);
-// app.use('/inbox', inboxRouter);
+app.use('/users', usersRouter);
+app.use('/inbox', inboxRouter);
 
 // 404 not found handling
 app.use(notFoundHandler);
