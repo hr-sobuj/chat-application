@@ -2,7 +2,7 @@
 const express = require('express');
 
 // internal import
-const { getUsers, addUser } = require('../controller/usersController');
+const { getUsers, addUser, removeUser } = require('../controller/usersController');
 const { decorateHtmlResponse } = require('../middlewares/common/decorateHtmlResponse');
 const avatarUpload = require('../middlewares/users/avatarUpload');
 const { addUserValidator, addUserErrorHandler } = require('../middlewares/users/userValidators');
@@ -14,6 +14,9 @@ route.get('/', decorateHtmlResponse('Users'), getUsers);
 
 // add user
 route.post('/', avatarUpload, addUserValidator, addUserErrorHandler, addUser);
+
+// remove user
+route.delete('/:id', removeUser);
 
 // export module
 module.exports = route;
