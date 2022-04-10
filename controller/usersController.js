@@ -61,8 +61,9 @@ const addUser = async (req, res) => {
 
 // remove user
 async function removeUser(req, res) {
+    console.log(req.params);
     try {
-        const user = User.findByIdAndDelete({
+        const user = await User.findByIdAndDelete({
             _id: req.params.id,
         });
         if (user.avater) {
@@ -71,7 +72,7 @@ async function removeUser(req, res) {
             });
         }
         res.status(200).json({
-            message: 'User Delete successfully!',
+            message: 'User Deleted successfully!',
         });
     } catch (error) {
         res.status(500).json({
