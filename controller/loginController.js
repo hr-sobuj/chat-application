@@ -17,13 +17,13 @@ async function login(req, res) {
         const user = await User.findOne({
             $or: [{ email: req.body.username }, { mobile: req.body.username }],
         });
-        console.log(user);
+        // console.log(user);
         if (user) {
             const isValidPassword = await bcrypt.compare(req.body.password, user.password);
             if (isValidPassword) {
                 // user object
                 const userObject = {
-                    username: user.username,
+                    username: user.name,
                     email: user.email,
                     mobile: user.mobile,
                     role: 'user',
@@ -61,8 +61,15 @@ async function login(req, res) {
     }
 }
 
+// logout
+function logout(req, res) {
+    res.clearCookie(process.env.COOKIE_NAME);
+    res.send('logout user');
+}
+
 // export module
 module.exports = {
     getLogin,
     login,
+    logout,
 };
