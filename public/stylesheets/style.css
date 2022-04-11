@@ -697,3 +697,12 @@ input[type="submit"]:active {
   );
   background: linear-gradient(to right, var(--green) 0%, var(--blue) 100%);
 }
+
+/* rounded  */
+.rounded {
+  border: 3px solid #4fd695;
+  border-radius: 50%;
+  padding: 0%;
+  width: 200px;
+  height: 103px;
+}

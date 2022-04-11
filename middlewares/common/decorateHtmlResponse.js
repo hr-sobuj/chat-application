@@ -6,6 +6,9 @@ function decorateHtmlResponse(page_title) {
         // eslint-disable-next-line camelcase
         res.locals.title = `${page_title} - Chat Application`;
         res.locals.html = true;
+        res.locals.loggedInUser = {};
+        res.locals.errors = {};
+        res.locals.data = {};
         next();
     };
 }

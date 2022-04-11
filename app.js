@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 const { urlencoded } = require('express');
+const cookieParser = require('cookie-parser');
 
 // internal import
 const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
@@ -34,6 +35,9 @@ app.set('view engine', 'ejs');
 
 // set static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+// parse cookies
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // routing setup
 app.use('/', loginRouter);
