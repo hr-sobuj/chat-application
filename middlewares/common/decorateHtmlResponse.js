@@ -1,3 +1,5 @@
+const moment = require('moment'); // require
+
 // decorate html page
 // eslint-disable-next-line camelcase
 function decorateHtmlResponse(page_title) {
@@ -9,6 +11,7 @@ function decorateHtmlResponse(page_title) {
         res.locals.loggedInUser = {};
         res.locals.errors = {};
         res.locals.data = {};
+        res.locals.moment = moment;
         next();
     };
 }

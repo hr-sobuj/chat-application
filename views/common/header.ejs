@@ -7,39 +7,51 @@
     <meta name="author" content="Sumit Saha" />
     <meta name="owner" content="learnwithsumit.com" />
     <title><%= title %></title>
-    <link rel="shortcut icon" href="./images/chat.png" />
+    <link rel="shortcut icon" href="./images/illustration.png" />
     <link rel="stylesheet" href="./stylesheets/toastify.css" />
     <link rel="stylesheet" href="./stylesheets/style.css" />
     <script src="./js/toastify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="./js/moment.js"></script>
   </head>
   <body>
     <div class="menu">
-      <% if (loggedInUser && loggedInUser.username){ %>
-        
+      <% if (loggedInUser && loggedInUser.username) { %>
       <div class="menu-item"><a href="/inbox">Inbox</a></div>
       <div class="menu-item"><a href="/users">Users</a></div>
-      <div class="menu-item"><a href="/" onclick="logout()">Logout</a></div>
-      <% } else {%>
-        <div class="menu-item"><a href="/inbox">Inbox</a></div>
+      <div class="menu-item">
+        <% if (loggedInUser && loggedInUser.avatar) { %>
+        <img
+          src="./uploads/avatars/<%= loggedInUser.avatar %>"
+          alt="<%= loggedInUser.name %>"
+        />
+        <% } else { %>
+        <img src="./images/nophoto.png" alt="<%= loggedInUser.name %>" />
+        <% } %>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+      <% } else { %>
+      <div class="menu-item"><a href="/inbox">Inbox</a></div>
       <div class="menu-item"><a href="/users">Users</a></div>
-      <div class="menu-item"><a href="/" onclick="logout()">Login</a></div>
+      <div class="menu-item"><a href="/">Login</a></div>
       <% } %>
     </div>
-
     <script>
-      const logoutToast=Toastify({
-          text:"Logged out user!",
-          duration:1000
-        })
-      function logout(){
+      // toast
+      const logoutToast = Toastify({
+        text: "You are being logged out...",
+        duration: 1000,
+      });
+
+      function logout() {
         fetch("/", {
           method: "DELETE",
         });
         logoutToast.showToast();
-
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.replace("/");
-        },1000)
+        }, 1000);
       }
     </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
