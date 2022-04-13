@@ -17,16 +17,18 @@ async function login(req, res) {
         const user = await User.findOne({
             $or: [{ email: req.body.username }, { mobile: req.body.username }],
         });
-        // console.log(user);
+        console.log(user);
         if (user) {
             const isValidPassword = await bcrypt.compare(req.body.password, user.password);
             if (isValidPassword) {
                 // user object
                 const userObject = {
+                    // eslint-disable-next-line no-underscore-dangle
+                    userid: user._id,
                     username: user.name,
                     email: user.email,
-                    mobile: user.mobile,
-                    role: 'user',
+                    avatar: user.avatar || null,
+                    role: user.role || 'user',
                 };
                 // generate token
                 const token = jwt.sign(userObject, process.env.JWT_SECRET, {

@@ -44,7 +44,7 @@ async function searchUser(req, res, next) {
                         },
                     ],
                 },
-                'name avatar',
+                'name avatar'
             );
 
             res.json(users);
@@ -79,6 +79,7 @@ async function addConversation(req, res, next) {
         });
 
         const result = await newConversation.save();
+        // console.log(result);
         res.status(200).json({
             message: 'Conversation was added successfully!',
         });

@@ -7,11 +7,11 @@ const {
     searchUser,
     addConversation,
     sendMessage,
+    getMessages,
 } = require('../controller/inboxController');
 const { checkLogin } = require('../middlewares/common/checkLogin');
 const { decorateHtmlResponse } = require('../middlewares/common/decorateHtmlResponse');
 const attachmentUpload = require('../middlewares/inbox/attachmentUpload');
-const { getMaxListeners } = require('../models/People');
 
 const route = express.Router();
 
@@ -25,7 +25,7 @@ route.post('/search', checkLogin, searchUser);
 route.post('/conversation', checkLogin, addConversation);
 
 // get messages of a conversation
-route.get('/messages/:conversation_id', checkLogin, getMaxListeners);
+route.get('/messages/:conversation_id', checkLogin, getMessages);
 
 // send message
 route.post('/message', checkLogin, attachmentUpload, sendMessage);

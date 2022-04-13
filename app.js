@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const path = require('path');
 const { urlencoded } = require('express');
 const cookieParser = require('cookie-parser');
+const moment = require('moment');
+const socket = require('socket.io');
 
 // internal import
 const { notFoundHandler, errorHandler } = require('./middlewares/common/errorHandler');
@@ -14,6 +16,9 @@ const inboxRouter = require('./route/inboxRouter');
 
 const app = express();
 dotenv.config();
+
+// set comment as app locals
+app.locals.moment = moment;
 
 // DATABASE CONNECTION
 mongoose
@@ -51,6 +56,17 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 // listing
-app.listen(process.env.PORT, () => {
+// app.listen(process.env.PORT, () => {
+//     console.log(`app is listening on the port ${process.env.PORT}`);
+// });
+
+const server = app.listen(process.env.PORT, () => {
     console.log(`app is listening on the port ${process.env.PORT}`);
 });
+
+const io = socket(server);
+io.on('connection', (socket) => {
+    console.log(`${socket.id} is connected`);
+});
+
+global.io = io;
