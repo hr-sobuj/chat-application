@@ -44,9 +44,6 @@ To install and run this application locally, please follow these steps:
    npm install
    ```
 
-Certainly! Here's the updated section for setting up the environment variables in the README.md file:
-
-````markdown
 ## Installation
 
 To install and run this application locally, please follow these steps:
@@ -56,7 +53,6 @@ To install and run this application locally, please follow these steps:
    ```bash
    git clone https://github.com/your-username/live-chat-application.git
    ```
-````
 
 2. Navigate to the project directory:
 
@@ -130,3 +126,7 @@ Use the provided credentials to log in and test the various features and functio
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per your needs.
+
+```
+
+```
