@@ -126,7 +126,3 @@ Use the provided credentials to log in and test the various features and functio
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per your needs.
-
-```
-
-```
