@@ -61,7 +61,7 @@ app.use(errorHandler);
 // });
 
 const server = app.listen(process.env.PORT, () => {
-    console.log(`app is listening on the port ${process.env.PORT}`);
+    console.log(`app is listening on the port http://localhost:${process.env.PORT}`);
 });
 
 const io = socket(server);

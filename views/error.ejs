@@ -9,6 +9,8 @@
   <body>
     <p><%= error.message %></p>
     <p><%= error.status %></p>
-    <p><%= error.stack %></p>
+    <% if (process.env.NODE_ENV === 'development') { %>
+      <p><%= error.stack %></p>
+    <% } %>
   </body>
 </html>
