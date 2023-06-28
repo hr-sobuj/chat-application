@@ -29,28 +29,6 @@ To install and run this application locally, please follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/hr-sobuj/chat-application.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd chat-application
-   ```
-
-3. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
-
-## Installation
-
-To install and run this application locally, please follow these steps:
-
-1. Clone the repository to your local machine:
-
-   ```bash
    git clone https://github.com/your-username/live-chat-application.git
    ```
 
